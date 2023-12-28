@@ -4,8 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const currentPath = useLocation().pathname;
-  console.log(currentPath);
-
+  
   return (
     <nav className="md:mx-20 absolute z-50">
       <ul className="flex md:space-x-20 space-x-8 text-base md:text-lg px-4 md:px-0 py-10 justify-start">

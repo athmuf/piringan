@@ -12,7 +12,7 @@ const Search = () => {
 
   const handleSearch = () => {
     localStorage.setItem("Find", inputValue);
-    navigate("/recipe");
+    navigate("/recipes");
   };
 
   const handleKeyPress = (e) => {
@@ -21,7 +21,6 @@ const Search = () => {
     }
   };
 
-  console.log(inputValue);
   return (
     <div className="px-4 md:px-40 py-10">
       <div className="flex flex-col-reverse md:flex-row items-center">
@@ -47,7 +46,7 @@ const Search = () => {
               onChange={(e) => handleInputValue(e.target.value)}
               onKeyDown={(e) => handleKeyPress(e)}
             />
-            <Link to="/recipe">
+            <Link to="/recipes">
               <FaSearch
                 className="text-2xl my-2 hover:text-green-700 transition-colors cursor-pointer"
                 onClick={handleSearch}
