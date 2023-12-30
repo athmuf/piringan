@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import Food from "../assets/images/food.jpg";
 import Random from "../assets/images/random.png";
 import Find from "../assets/images/find-recipe.png";
 import List from "../assets/images/recipe-list.png";
+import { Link as ScrollLink } from "react-scroll";
 
 const Hero = () => {
   return (
@@ -19,18 +21,34 @@ const Hero = () => {
                 collection. Elevate your kitchen creations and savor the joy of
                 delicious possibilities.
               </p>
-              <button className="md:my-5">Explore Recipes Now</button>
+              <Link to="/recipes">
+                <button className="md:my-5">Explore Recipes Now</button>
+              </Link>
               <div className="md:flex md:space-x-4 space-y-2 md:space-y-0 py-10 md:text-center text-left text-gray-600 w-full">
-                <div className="bg-gray-100 flex md:flex-col items-center w-full shadow-lg rounded-lg p-4 md:w-28 cursor-pointer md:hover:-translate-y-1 hover:translate-x-1 md:hover:translate-x-0 transition duration-300 justify-center">
-                  <img src={Find} alt="Find" className="w-8 md:w-14 mr-2 md:mx-auto" />
-                  <div className="pt-0 md:pt-2">Find Recipe</div>
-                </div>
+                <ScrollLink to="find" spy={true} smooth={true} offset={-50} duration={500}>
+                  <div className="bg-gray-100 flex md:flex-col items-center w-full shadow-lg rounded-lg p-4 md:w-28 cursor-pointer md:hover:-translate-y-1 hover:translate-x-1 md:hover:translate-x-0 transition duration-300 justify-center">
+                    <img
+                      src={Find}
+                      alt="Find"
+                      className="w-8 md:w-14 mr-2 md:mx-auto"
+                    />
+                    <div className="pt-0 md:pt-2">Find Recipe</div>
+                  </div>
+                </ScrollLink>
                 <div className="bg-white flex md:flex-col items-center w-full shadow-lg rounded-lg p-4 md:w-28 cursor-pointer md:hover:-translate-y-1 hover:translate-x-1 md:hover:translate-x-0 transition duration-300 justify-center">
-                  <img src={List} alt="Recipes" className="w-8 md:w-14 mr-2 md:mx-auto" />
+                  <img
+                    src={List}
+                    alt="Recipes"
+                    className="w-8 md:w-14 mr-2 md:mx-auto"
+                  />
                   <div className="pt-0 md:pt-2">500+ Recipes</div>
                 </div>
                 <div className="bg-gray-100 flex md:flex-col items-center w-full shadow-lg rounded-lg p-4 md:w-28 cursor-pointer md:hover:-translate-y-1 hover:translate-x-1 md:hover:translate-x-0 transition duration-300 justify-center">
-                  <img src={Random} alt="Random" className="w-8 md:w-14 mr-2 md:mx-auto" />
+                  <img
+                    src={Random}
+                    alt="Random"
+                    className="w-8 md:w-14 mr-2 md:mx-auto"
+                  />
                   <div className="pt-0 md:pt-2">Surprise Recipe</div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import TastyFood from "../assets/images/tasty-food.jpg";
 
 const Search = () => {
@@ -22,7 +22,7 @@ const Search = () => {
   };
 
   return (
-    <div className="px-4 md:px-40 py-10">
+    <div className="px-4 md:px-40 py-10" id="find">
       <div className="flex flex-col-reverse md:flex-row items-center">
         <img
           src={TastyFood}
