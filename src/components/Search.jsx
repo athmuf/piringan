@@ -6,18 +6,14 @@ import TastyFood from "../assets/images/tasty-food.jpg";
 const Search = () => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState();
+  
   const handleInputValue = (e) => {
     setInputValue(e);
   };
 
-  const handleSearch = () => {
-    localStorage.setItem("Find", inputValue);
-    navigate("/recipes");
-  };
-
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSearch();
+      navigate(`/recipes?q=${inputValue}`)
     }
   };
 
@@ -46,10 +42,9 @@ const Search = () => {
               onChange={(e) => handleInputValue(e.target.value)}
               onKeyDown={(e) => handleKeyPress(e)}
             />
-            <Link to="/recipes">
+            <Link to={`/recipes?q=${inputValue}`}>
               <FaSearch
                 className="text-2xl my-2 hover:text-green-700 transition-colors cursor-pointer"
-                onClick={handleSearch}
               />
             </Link>
           </div>

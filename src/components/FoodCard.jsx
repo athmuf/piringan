@@ -4,10 +4,10 @@ import { FiMinus } from "react-icons/fi";
 import { FaRegBookmark } from "react-icons/fa6";
 import NoImage from "../assets/images/no-image.webp";
 
-const FoodCard = ({ id, title, image, error }) => {
+const FoodCard = ({ id, number, title, image, error }) => {
   return (
     <Link to={error ? "/" : `/${id}`}>
-      <div className="px-2 pt-2 bg-white shadow-lg w-full md:w-fit hover:scale-105 focus:scale-105 duration-300 delay-150 cursor-pointer">
+      <div className="px-2 pt-2 bg-white shadow-lg w-full hover:scale-105 focus:scale-105 duration-300 delay-150 cursor-pointer">
         <img
           src={error ? NoImage : image}
           alt={error ? "No Title" : title}
@@ -15,11 +15,11 @@ const FoodCard = ({ id, title, image, error }) => {
         />
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <div className="font-semibold">01</div>
+            <div className="font-semibold">{number < 10 ? `0${number}` : number}</div>
             <div className="px-2 text-orange-400 text-4xl">
               <FiMinus />
             </div>
-            <div className="font-semibold text-left">
+            <div className="font-semibold text-left truncate w-48">
               {error ? "No Title" : title}
             </div>
           </div>
@@ -34,6 +34,7 @@ const FoodCard = ({ id, title, image, error }) => {
 
 FoodCard.propTypes = {
   id: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   error: PropTypes.bool.isRequired,
