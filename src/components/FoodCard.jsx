@@ -4,9 +4,9 @@ import { FiMinus } from "react-icons/fi";
 import { FaRegBookmark } from "react-icons/fa6";
 import NoImage from "../assets/images/no-image.webp";
 
-const FoodCard = ({ id, number, title, image, error }) => {
+const FoodCard = ({ id, number, title, image, error, handleDetailRecipe }) => {
   return (
-    <Link to={error ? "/" : `/${id}`}>
+    <Link to={error ? "/" : `/recipe?${id}&${title}`} onClick={handleDetailRecipe}>
       <div className="px-2 pt-2 bg-white shadow-lg w-full hover:scale-105 focus:scale-105 duration-300 delay-150 cursor-pointer">
         <img
           src={error ? NoImage : image}
@@ -38,6 +38,7 @@ FoodCard.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   error: PropTypes.bool.isRequired,
+  handleDetailRecipe: PropTypes.func.isRequired
 };
 
 export default FoodCard;

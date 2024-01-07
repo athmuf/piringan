@@ -12,7 +12,7 @@ const Recipes = () => {
 
   const navigate = useNavigate();
   const params = new URLSearchParams(useLocation().search).get("q");
-  const query = params !== "undefined" ? params : ""
+  const query = params !== "undefined" ? params : "";
 
   useEffect(() => {
     const getListRecipe = async () => {
@@ -23,18 +23,21 @@ const Recipes = () => {
     getListRecipe();
   }, [query]);
 
-  useEffect(() => {
-    query === undefined
-  })
-
   const handleInputValue = (e) => {
     setInputValue(e);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      navigate(`/recipes?q=${inputValue}`)
+      navigate(`/recipes?q=${inputValue}`);
     }
+  };
+
+  const handleDetailRecipe = (idRecipe) => {
+    localStorage.setItem(
+      "Recipe",
+      JSON.stringify(listRecipe.find((item) => item.id === idRecipe))
+    );
   };
 
   return (
@@ -60,9 +63,9 @@ const Recipes = () => {
                 defaultValue={query}
               />
               <Link to={`/recipes?q=${inputValue}`}>
-              <button>
-                <FaSearch />
-              </button>
+                <button>
+                  <FaSearch />
+                </button>
               </Link>
             </div>
           </div>
@@ -71,19 +74,22 @@ const Recipes = () => {
       <div className="pt-72 md:pt-96">
         <div className="px-4 md:px-40 py-10">
           <h1 className="text-2xl md:text-3xl font-bold md:py-4 text-left">
-            {query ? "Result of " + "❛" + query + "❜" : "Input key on search box..."}
+            {query
+              ? "Result of " + "❛" + query + "❜"
+              : "Input key on search box..."}
           </h1>
           <div className="border-b-2 border-orange-400 w-20"></div>
           <div className="py-5 md:py-10 flex flex-wrap">
             {listRecipe &&
               listRecipe.map((recipe, index) => (
-                <div key={recipe?.id} className="w-1/4 p-2">
+                <div key={recipe?.id} className="w-full md:w-1/4 p-2">
                   <FoodCard
                     id={recipe?.id}
                     number={index + 1}
                     title={recipe?.Title}
                     image={recipe?.Image}
                     error={isError}
+                    handleDetailRecipe={() => handleDetailRecipe(recipe?.id)}
                   />
                 </div>
               ))}
