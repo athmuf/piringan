@@ -38,6 +38,7 @@ const Recipes = () => {
       "Recipe",
       JSON.stringify(listRecipe.find((item) => item.id === idRecipe))
     );
+    localStorage.setItem("Recipes", JSON.stringify(listRecipe))
   };
 
   return (
