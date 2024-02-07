@@ -83,7 +83,7 @@ const Recipes = () => {
           <div className="py-5 md:py-10 flex flex-wrap">
             {listRecipe &&
               listRecipe.map((recipe, index) => (
-                <div key={recipe?.id} className="w-full md:w-1/4 p-2">
+                <div key={recipe?.id} className="w-full md:w-1/4 md:p-2 md:py-0 py-2">
                   <FoodCard
                     id={recipe?.id}
                     number={index + 1}
