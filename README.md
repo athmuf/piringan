@@ -14,7 +14,7 @@ PIRINGAN, a React and Tailwind CSS-powered website, offers a diverse collection 
 
 **Built with:**
 
-- react 18.2.0,
+- react 18.2.0
 - tailwindcss 3.4.0
 - [RapidApi](https://rapidapi.com/zilinskivan/api/food-recipes-with-images/)
 
