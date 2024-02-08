@@ -1,6 +1,6 @@
 import Hero from "../components/Hero";
 import Search from "../components/Search";
-import Category from "../components/Category";
+// import Category from "../components/Category";
 
 const Home = () => {
   return (
@@ -8,7 +8,7 @@ const Home = () => {
       <div>
         <Hero />
         <Search />
-        <Category />
+        {/* <Category /> */}
       </div>
     </>
   );

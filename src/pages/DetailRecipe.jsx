@@ -1,12 +1,12 @@
-import { useLocation } from "react-router-dom";
-import { FaCircleNotch } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import classNames from "classnames";
+import { useEffect, useState } from "react";
+import { FaCircleNotch } from "react-icons/fa";
+import { useLocation, Link } from "react-router-dom";
 import { FetchRecipe } from "../services/apis/fetchRecipe";
 
 const DetailRecipe = () => {
   const [listRecipe, setListRecipe] = useState([]);
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
   const [isIngredients, setIsIngredients] = useState(true);
   const [idRecipe, title] = useLocation().search.substring(1).split("&");
   const storedRecipe = JSON.parse(localStorage.getItem("Recipe")) || {};
@@ -17,19 +17,29 @@ const DetailRecipe = () => {
     setListRecipe(JSON.parse(localStorage.getItem("Recipes")));
   }, []);
 
-  // console.log(storedRecipe, "storedrecipe")
-  // console.log(Title)
-  // useEffect(() => {
-  //   if (localStorage.getItem("Recipe") === null) {
-  //     const getListRecipe = async () => {
-  //       const dataRecipe = await FetchRecipe(title);
-  //       console.log(dataRecipe?.data?.d?.[0])
-  //       if (dataRecipe.status === "success") localStorage.setItem("Recipe", JSON.stringify(dataRecipe?.data?.d?.[0]));
-  //       else if (dataRecipe.status === "failed") setIsError(true);
-  //     };
-  //     getListRecipe();
-  //   }
-  // }, [title])
+  const handleDetailRecipe = (idRecipe) => {
+    localStorage.setItem(
+      "Recipe",
+      JSON.stringify(listRecipe.find((item) => item.id === idRecipe))
+    );
+    localStorage.setItem("Recipes", JSON.stringify(listRecipe));
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("Recipe") === null) {
+      const getListRecipe = async () => {
+        const dataRecipe = await FetchRecipe(title);
+        if (dataRecipe.status === "success")
+          localStorage.setItem(
+            "Recipe",
+            JSON.stringify(dataRecipe?.data?.d?.[0])
+          );
+        else if (dataRecipe.status === "failed") setIsError(true);
+      };
+      getListRecipe();
+    }
+  }, [title]);
 
   return (
     <div className="pt-28 px-4 md:px-40">
@@ -101,16 +111,30 @@ const DetailRecipe = () => {
         <div className="md:w-1/3 w-full overscroll-auto overflow-auto md:h-screen bg-gray-100 shadow-xl p-8 space-y-4 border md:my-0 my-10">
           <h4 className="text-lg font-semibold">Related Recipes</h4>
           <div className="md:space-y-2 space-y-0 space-x-2 md:space-x-0 flex md:flex-col flex-row">
-            {listRecipe.map((recipes) => (
-              <div key={recipes.id}className="flex md:flex-row flex-col border rounded shadow-md items-center bg-white cursor-pointer transition ease-in-out hover:scale-110 duration-300">
-                <img
-                  src={recipes.Image}
-                  alt={recipes.Title}
-                  className="md:w-5/12 w-full md:h-full h-56 object-cover"
-                />
-                <h5 className="text-base px-4">{recipes.Title}</h5>
-              </div>
-            ))}
+            {listRecipe ? (
+              listRecipe.map((recipes) => (
+                <Link
+                  key={recipes.id}
+                  to={`/recipe?${recipes?.id}&${recipes?.Title}`}
+                  onClick={() => handleDetailRecipe(recipes?.id)}
+                >
+                  <div className="flex md:flex-row flex-col h-full border rounded shadow-md items-center bg-white cursor-pointer transition ease-in-out hover:scale-110 duration-300">
+                    <img
+                      src={recipes.Image}
+                      alt={recipes.Title}
+                      className="md:w-5/12 h-56 md:h-full object-cover"
+                    />
+                    <h5 className="text-base px-4 py-2 md:py-0 text-left">
+                      {recipes.Title}
+                    </h5>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <Link to="/recipes" className="text-blue-500">
+                Search for more recipe
+              </Link>
+            )}
           </div>
         </div>
       </div>

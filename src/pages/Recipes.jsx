@@ -4,6 +4,7 @@ import FoodCard from "../components/FoodCard";
 import Header from "../assets/images/header.jpg";
 import { FetchRecipe } from "../services/apis/fetchRecipe";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import classNames from "classnames";
 
 const Recipes = () => {
   const [isError, setIsError] = useState();
@@ -38,7 +39,7 @@ const Recipes = () => {
       "Recipe",
       JSON.stringify(listRecipe.find((item) => item.id === idRecipe))
     );
-    localStorage.setItem("Recipes", JSON.stringify(listRecipe))
+    localStorage.setItem("Recipes", JSON.stringify(listRecipe));
   };
 
   return (
@@ -73,7 +74,7 @@ const Recipes = () => {
         </div>
       </div>
       <div className="pt-72 md:pt-96">
-        <div className="px-4 md:px-40 py-10">
+        <div className={classNames({ "px-4 md:px-40 py-10": true, "h-screen": !query })}>
           <h1 className="text-2xl md:text-3xl font-bold md:py-4 text-left">
             {query
               ? "Result of " + "❛" + query + "❜"
@@ -83,7 +84,10 @@ const Recipes = () => {
           <div className="py-5 md:py-10 flex flex-wrap">
             {listRecipe &&
               listRecipe.map((recipe, index) => (
-                <div key={recipe?.id} className="w-full md:w-1/4 md:p-2 md:py-0 py-2">
+                <div
+                  key={recipe?.id}
+                  className="w-full md:w-1/4 md:p-2 md:py-0 py-2"
+                >
                   <FoodCard
                     id={recipe?.id}
                     number={index + 1}
