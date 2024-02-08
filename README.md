@@ -5,25 +5,25 @@ PIRINGAN, a React and Tailwind CSS-powered website, offers a diverse collection 
 [Demo](https://piringan.vercel.app/)
 
 
-## Features:
+**Features:**
 
-- Recipe search
+- Recipe Search
 - Recipe Details
 - Responsive Functionality
 
 
-## Built with:
+**Built with:**
 
 - react 18.2.0,
 - tailwindcss 3.4.0
 - [RapidApi](https://rapidapi.com/zilinskivan/api/food-recipes-with-images/)
 
 
-## Getting Started
+**Getting Started**
 
 ```
 git clone https://github.com/athmuf/piringan.git
 cd piringan
 npm install
-npm start
+npm run dev
 ```
