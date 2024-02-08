@@ -1,8 +1,29 @@
-# React + Vite
+# PIRINGAN
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PIRINGAN, a React and Tailwind CSS-powered website, offers a diverse collection of detailed recipes, providing users with a quick and inspiring way to discover new culinary delights.
 
-Currently, two official plugins are available:
+[Demo](https://piringan.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Features:
+
+- Recipe search
+- Recipe Details
+- Responsive Functionality
+
+
+## Built with:
+
+- react 18.2.0,
+- tailwindcss 3.4.0
+- [RapidApi](https://rapidapi.com/zilinskivan/api/food-recipes-with-images/)
+
+
+## Getting Started
+
+```
+git clone https://github.com/athmuf/piringan.git
+cd piringan
+npm install
+npm start
+```
